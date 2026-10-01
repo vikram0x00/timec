@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+#include <pthread.h>
 
 struct XInfo {
     Display *dis;
@@ -20,7 +21,7 @@ void redraw(Display *dis, Window win);
 
 
 int main(){
-    XEvent event; // XEvent Declaration
+    XEvent event;
     char text[255];
     char tstr[16];
     KeySym key;
@@ -30,6 +31,7 @@ int main(){
         time_t result = time(NULL);
         struct tm *lt = localtime(&result);
         sprintf(tstr, "%02d:%02d:%02d", lt->tm_hour, lt->tm_min, lt->tm_sec);
+		redraw(xinf.dis, xinf.win);
         XDrawString(xinf.dis, xinf.win, xinf.gc, 100, 100, tstr, strlen(tstr));
 		if (event.type==Expose && event.xexpose.count==0) {
 			redraw(xinf.dis, xinf.win);
