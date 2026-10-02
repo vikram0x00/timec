@@ -3,10 +3,7 @@
 #include <X11/Xos.h>
 #include <time.h>
 #include <stdio.h>
-#include <unistd.h>
-#include <string.h>
 #include <stdlib.h>
-#include <pthread.h>
 
 struct XInfo {
     Display *dis;
@@ -25,14 +22,19 @@ int main(){
     char text[255];
     char tstr[16];
     KeySym key;
+	time_t clr = time(NULL);
 
     struct XInfo xinf = init_x();
+
 	while(1) {
         time_t result = time(NULL);
         struct tm *lt = localtime(&result);
         sprintf(tstr, "%02d:%02d:%02d", lt->tm_hour, lt->tm_min, lt->tm_sec);
-		redraw(xinf.dis, xinf.win);
-        XDrawString(xinf.dis, xinf.win, xinf.gc, 100, 100, tstr, strlen(tstr));
+		if(difftime(result, clr) >= 1){
+			clr = time(NULL);
+			redraw(xinf.dis, xinf.win);
+		}
+        XDrawString(xinf.dis, xinf.win, xinf.gc, 120, 120, tstr, strlen(tstr));
 		if (event.type==Expose && event.xexpose.count==0) {
 			redraw(xinf.dis, xinf.win);
 		}
@@ -53,8 +55,8 @@ struct XInfo init_x() {
 	black=BlackPixel(x.dis,x.screen),
 	white=WhitePixel(x.dis, x.screen);
    	x.win=XCreateSimpleWindow(x.dis,DefaultRootWindow(x.dis),0, 0, 300, 300, 5, black, white);
-	XSetStandardProperties(x.dis,x.win,"Howdy","Hi",None,NULL,0,NULL);
-	XSelectInput(x.dis, x.win, ExposureMask|ButtonPressMask|KeyPressMask);
+	XSetStandardProperties(x.dis,x.win,"TimeC","TimeC",None,NULL,0,NULL);
+	XSelectInput(x.dis, x.win, ExposureMask|KeyPressMask|ButtonPressMask);
     x.gc=XCreateGC(x.dis, x.win, 0,0);
 	XSetBackground(x.dis,x.gc,white);
 	XSetForeground(x.dis,x.gc,black);
