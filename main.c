@@ -52,7 +52,7 @@ struct XInfo init_x() {
     struct XInfo x;
 	x.dis=XOpenDisplay((char *)0);
    	x.screen=DefaultScreen(x.dis);
-	black=BlackPixel(x.dis,x.screen),
+	black=BlackPixel(x.dis, x.screen),
 	white=WhitePixel(x.dis, x.screen);
    	x.win=XCreateSimpleWindow(x.dis,DefaultRootWindow(x.dis),0, 0, 300, 300, 5, black, white);
 	XSetStandardProperties(x.dis,x.win,"TimeC","TimeC",None,NULL,0,NULL);
