@@ -38,11 +38,6 @@ int main(){
 		if (event.type==Expose && event.xexpose.count==0) {
 			redraw(xinf.dis, xinf.win);
 		}
-		if (event.type==KeyPress && XLookupString(&event.xkey,text,255,&key,0)==1) {
-			if (text[0]=='q') {
-				close_x(xinf.dis, xinf.gc, xinf.win);
-			}
-		}
 	}
     return 0;
 }
