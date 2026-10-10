@@ -1,1 +1,1 @@
-gcc main.c -o main -lX11
+gcc main.c -o ./bin/main -lX11
