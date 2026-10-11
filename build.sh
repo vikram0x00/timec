@@ -1,1 +1,0 @@
-gcc main.c -o ./bin/main -lX11
