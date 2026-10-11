@@ -18,4 +18,7 @@ Xlib Documentation: https://tronche.com/gui/x/xlib/
 - [Getting Started](https://www.gtk.org/docs/getting-started/hello-world/#getting-started)
 - [Widget Gallery](https://docs.gtk.org/gtk4/visual_index.html)
 
+- [Timeout Function](https://docs.gtk.org/glib/func.timeout_add.html)
+- [Tutorial](https://youtu.be/PMZ9BFgane4)
+
 ![alt text](image-1.png)
