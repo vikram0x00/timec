@@ -4,21 +4,29 @@
 
 #define NULL ((void *)0)
 
+char t_str[100];
+GtkWidget *text;
+
 static void print_hello(GtkWidget *widget, gpointer data){
   g_print("Hello World\n");
 }
 
+static gboolean update_time(){
+    struct tm *lt;
+    time_t result;
+    result = time(NULL);
+    lt = localtime(&result);
+    sprintf(t_str, "%02d:%02d:%02d", lt->tm_hour, lt->tm_min, lt->tm_sec);
+    gtk_label_set_text(GTK_LABEL(text), t_str);
+    return 1;
+}
+
 static void activate(GtkApplication *app, gpointer user_data){
   GtkWidget *window;
-  GtkWidget *text;
-  struct tm *lt;
-  time_t result;
-  char t_str[100];
-    
-  result = time(NULL);
-  lt = localtime(&result);
-  sprintf(t_str, "%02d:%02d:%02d", lt->tm_hour, lt->tm_min, lt->tm_sec);
+
   text = gtk_label_new(t_str);
+
+  g_timeout_add(1000, (GSourceFunc) update_time, NULL);
 
   window = gtk_application_window_new(app);
   gtk_window_set_title(GTK_WINDOW(window), "TimeC");
