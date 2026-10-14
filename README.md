@@ -1,4 +1,4 @@
-## Simple Clock in C using X11, GTK
+## Simple Clock in C using X11, GTK and Raylib
 
 Used X11 UI and Standard Headerfile `time.h`
 
@@ -22,3 +22,11 @@ Xlib Documentation: https://tronche.com/gui/x/xlib/
 - [Tutorial](https://youtu.be/PMZ9BFgane4)
 
 ![alt text](image-1.png)
+
+### Raylib
+
+![alt text](image-2.png)
+
+- [Installing Raylib on Ubuntu/based distros](https://medium.com/@filip.melka/getting-started-with-raylib-on-linux-mint-bf5f9242638d)
+- [Basic Example](https://www.raylib.com/examples/core/loader.html?name=core_basic_window)
+- [Resizable Window](https://www.reddit.com/r/raylib/comments/a19a67/resizable_window_questions/)
